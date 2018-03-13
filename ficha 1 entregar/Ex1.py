@@ -1,3 +1,5 @@
+#Exercício1
+
 numero = int(input("Escreva um número: "))
 antecessor = numero - 1
 sucessor = numero + 1

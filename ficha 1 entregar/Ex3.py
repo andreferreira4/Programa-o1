@@ -1,3 +1,5 @@
+#Exercício3
+
 massa = float(input("Escreva a massa corporal(kg) "))
 altura = float(input("Escreva a altura(m) "))
 imc = massa / (altura **2)
