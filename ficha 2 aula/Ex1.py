@@ -4,8 +4,8 @@ numero1 = input("Ler primeiro número ")
 numero2 = input("Ler segundo número ")
 
 if numero1 == numero2:
-    print(numero1)
+    print("{} = {}".format(numero1,numero2))
 elif numero1 > numero2:
-    print(numero1)
+    print("{} > {}".format(numero1,numero2))
 else:
-    print(numero2)
+     print("{} < {}".format(numero1,numero2))
