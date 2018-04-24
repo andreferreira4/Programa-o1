@@ -25,24 +25,27 @@ class utilizador():
     
     def login_utilizador(self):
         contar = 0
-        while contar != 3:
+        if self.bloquear == True:
+            resposta = input("Responder a pergunta de segurança: ")
+            while resposta != self.resposta_secreta:
+                resposta = input("Responder a pergunta de segurança: ")
+            else:
+                self.bloquear = False   
+                utilizador1.login_utilizador()
+        while contar < 3:
             login_email = input("Email: ")
             login_password = input("Password: ")
-            if self.bloquear == False:
-                if self.email == login_email and self.password == login_password:
-                    print("Parabéns você entrou")
-                    break
-                else:
-                    print("Login errado!")
-                    contar += 1
+            if self.email == login_email and self.password == login_password:
+                print("Parabéns você entrou")
+                break
             else:
-                pergunta_segurança = input("Qual foi a sua resposta secreta: ")
-                if pergunta_segurança == self.resposta_secreta:
-                    self.bloquear == False
-                    login_utilizador()
+                print("Login errado!")
+                contar += 1
         else:
-            self.bloquear= True
-            login_utilizador()
+            print("Utilizador bloqueado")
+            self.bloquear = True
+            utilizador1.login_utilizador()
+                      
 print("Introduzir dados para o utilizador1")
 utilizador1 = utilizador()
 utilizador1.nome = input("Nome de utilizador: ")
@@ -51,7 +54,6 @@ utilizador1.password = input("Palavra-passe do utilizador: ")
 utilizador1.identificador = "{}-{}".format(randint(100, 999),randint(1000, 9999))
 utilizador1.resposta_secreta = input("Resposta secreta do utilizador: ")
 utilizador1.data_criacao = time.strftime("%d/%m/%Y")
-utilizador1.bloquear = False
 
 print("Introduzir dados para o utilizador2")
 utilizador2 = utilizador()
@@ -61,8 +63,5 @@ utilizador2.password = input("Palavra-passe do utilizador: ")
 utilizador2.identificador = "{}-{}".format(randint(100, 999),randint(1000, 9999))
 utilizador2.resposta_secreta = input("Resposta secreta do utilizador: ")
 utilizador2.data_de_criacao = time.strftime("%d/%m/%Y")
-utilizador2.bloquear = False
 
 utilizador1.login_utilizador()
-
-print(utilizador1)
