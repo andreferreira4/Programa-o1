@@ -7,22 +7,20 @@ class jogador():
 class tabuleiro():
 
     def __init__(self):
-        self.tabuleiro = [[ "X" , None ,None ], 
-                          [None, None ,None ], 
-                          [None, None ,None ]]
+        self.tabuleiro = [["", "" , "" ], 
+                          ["", "" ,"" ], 
+                          ["", "" ,"" ]]
         self.token = ""
     
-    def printTabuleiro(self):
+    def __str__(self):
         print(' | A | B | C |')
-        print( '--------------------------')
-        print( '1|  {}    |  {}    | {} |'.format(self.tabuleiro[0][0], self.tabuleiro[0][1], self.tabuleiro[0][2]))
-        print( '--------------')
-        print( '2|  {}    | {}     | {}  |') 
-        print( '--------------')
-        print( '3| {}     | {}     | {}  |')
-        print( '--------------------------')
-
-
+        print( '-----------------------------')
+        print( '1|  {}    |  {}    | {}     |'.format(self.tabuleiro[0][0], self.tabuleiro[0][1], self.tabuleiro[0][2]))
+        print( '-----------------------------')
+        print( '2|  {}    | {}     | {}     |'.format(self.tabuleiro[1][0], self.tabuleiro[1][1], self.tabuleiro[1][2]))
+        print( '-----------------------------')
+        print( '3| {}     | {}     | {}     |'.format(self.tabuleiro[2][0], self.tabuleiro[2][1], self.tabuleiro[2][2]))
+        print( '-----------------------------')
     
 jogador1 = jogador()
 jogador1.nome = input("Nome do jogador: ")
@@ -37,8 +35,9 @@ while True:
         jogador2.token = input("Token que o jogador 2 que prente usar: ")
     else:
         break
+
 tabuleiro1 = tabuleiro()
-tabuleiro1.printTabuleiro()
+tabuleiro1.__str__()
 print(jogador1.nome,jogador1.token,jogador2.nome,jogador2.token)
 
 jogar = tabuleiro()
