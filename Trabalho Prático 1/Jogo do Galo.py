@@ -1,16 +1,17 @@
+
 class jogador():
     
     def __init__(self):
         self.nome = ""
         self.token = ""
-    def validar_jogador(self):
-        while True:
-            if jogador1.token != "X" or jogador1.token != "x" or jogador1.token != "O" or jogador1.token != "o":
-                jogador1.token = input("Token que prente usar (X/O): ")   
-            else:
-                break
+
 class tabuleiro():
-    
+
+    def __init__(self,):
+        self.tabuleiro = [[None, None ,None ], 
+                          [None, None ,None ], 
+                          [None, None ,None ]]
+
     def printTabuleiro(self):
         print(' | A | B | C |')
         print( '--------------')
@@ -22,19 +23,32 @@ class tabuleiro():
         print( '--------------')
 
 tabuleiro1 = tabuleiro()
-tabuleiro1.tabuleiro = [ ["A1", "A2", "A3"], 
-                         ["B1", "B2", "B3"], 
-                         ["C1", "C2", "C3"] ]
+tabuleiro1.tabuleiro = [ [None, None ,None ], 
+                         [None, None ,None ], 
+                         [None, None ,None ] ]
     
 jogador1 = jogador()
 jogador1.nome = input("Nome do jogador: ")
-jogador1.token = input("Token que prente usar (X/O): ")
+jogador1.token = input("Token que o jogador1 pretende usar: ")
 
 jogador2 = jogador()
 jogador2.nome = input("Nome do jogador: ")
-jogador2.token = input("Token que prente usar (X/O): ")
+jogador2.token = input("Token que o jogador2 pretende usar: ")
+
+while True:
+    if jogador1.token == jogador2.token: 
+        jogador2.token = input("Token que o jogador 2 que prente usar: ")
+    else:
+        break
 
 tabuleiro1.printTabuleiro()
-jogador1.validar_jogador()
+print(jogador1.nome,jogador1.token,jogador2.nome,jogador2.token)
+
+jogar = tabuleiro()
+numero_max_jogadas = 9
+while numero_max_jogadas <= 9:
+    jogada = input("Escreva a posição que pretende jogar (A1-C3)")
+    
+
 
 
