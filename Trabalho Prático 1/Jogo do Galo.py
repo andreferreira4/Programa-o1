@@ -52,8 +52,8 @@ class tabuleiro():
             (self.tabuleiro[1][0] == token and self.tabuleiro[1][1] == token and self.tabuleiro[1][2] == token) or \
             (self.tabuleiro[2][0] == token and self.tabuleiro[2][1] == token and self.tabuleiro[2][2] == token) or \
             (self.tabuleiro[0][0] == token and self.tabuleiro[1][0] == token and self.tabuleiro[2][0] == token) or \
-            (self.tabuleiro[1][0] == token and self.tabuleiro[1][1] == token and self.tabuleiro[1][2] == token) or \
-            (self.tabuleiro[2][0] == token and self.tabuleiro[2][1] == token and self.tabuleiro[2][2] == token) or \
+            (self.tabuleiro[0][1] == token and self.tabuleiro[1][1] == token and self.tabuleiro[2][1] == token) or \
+            (self.tabuleiro[0][2] == token and self.tabuleiro[1][2] == token and self.tabuleiro[2][2] == token) or \
             (self.tabuleiro[0][0] == token and self.tabuleiro[1][1] == token and self.tabuleiro[2][2] == token) or \
             (self.tabuleiro[2][0] == token and self.tabuleiro[1][1] == token and self.tabuleiro[0][2] == token):
             global vencedor
@@ -78,15 +78,18 @@ jogar.__str__()
 print(jogador1.nome,jogador1.token,jogador2.nome,jogador2.token)
 
 jogar = tabuleiro()
-numero_max_jogadas = 1
+numero_max_jogadas = 0
 vencedor = False
-while numero_max_jogadas <= 9:
+while numero_max_jogadas < 9 :
     jogada = input("Escreva a posição que pretende jogar (A1-C3)")
     jogar.validar_jogada(jogada,jogador1.token)
     print(jogar)
     jogar.vencedor(jogador1.nome,jogador1.token)
     if vencedor == True:
         print("O vencedor é o: ",jogador1.nome)
+        break
+    numero_max_jogadas += 1
+    if numero_max_jogadas == 9:
         break
     jogada = input("Escreva a posição que pretende jogar (A1-C3)")
     jogar.validar_jogada(jogada,jogador2.token)
