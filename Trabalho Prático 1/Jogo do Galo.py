@@ -65,16 +65,16 @@ jogador1 = jogador(jogador1nome, jogador1token)
 
 jogador2nome = input("Nome do jogador: ")
 jogador2token = input("Token que o jogador2 pretende usar: ")
-jogador2 = jogador(jogador2nome, jogador2token)
 
 while True:
     if jogador1token == jogador2token: 
         jogador2token = input("Token que o jogador 2 que prente usar: ")
     else:
+        jogador2 = jogador(jogador2nome, jogador2token)
         break
 
 jogar = tabuleiro()
-jogar.__str__()
+print(jogar)
 print(jogador1.nome,jogador1.token,jogador2.nome,jogador2.token)
 
 jogar = tabuleiro()
@@ -82,6 +82,8 @@ numero_max_jogadas = 0
 vencedor = False
 while numero_max_jogadas < 9 :
     jogada = input("Escreva a posição que pretende jogar (A1-C3)")
+    if jogada == "Desistir" or jogada == "desistir":
+        break
     jogar.validar_jogada(jogada,jogador1.token)
     print(jogar)
     jogar.vencedor(jogador1.nome,jogador1.token)
@@ -92,6 +94,8 @@ while numero_max_jogadas < 9 :
     if numero_max_jogadas == 9:
         break
     jogada = input("Escreva a posição que pretende jogar (A1-C3)")
+    if jogada == "Desistir" or jogada == "desistir":
+        break
     jogar.validar_jogada(jogada,jogador2.token)
     print(jogar)
     jogar.vencedor(jogador2.nome,jogador2.token)
