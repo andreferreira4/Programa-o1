@@ -1,9 +1,9 @@
 
 class jogador():
     
-    def __init__(self):
-        self.nome = ""
-        self.token = ""
+    def __init__(self, nome, token):
+        self.nome = nome
+        self.token = token
 class tabuleiro():
 
     def __init__(self):
@@ -13,40 +13,64 @@ class tabuleiro():
         self.token = ""
     
     def __str__(self):
-        print(' | A | B | C |')
-        print( '-----------------------------')
-        print( '1|  {}    |  {}    | {}     |'.format(self.tabuleiro[0][0], self.tabuleiro[0][1], self.tabuleiro[0][2]))
-        print( '-----------------------------')
-        print( '2|  {}    | {}     | {}     |'.format(self.tabuleiro[1][0], self.tabuleiro[1][1], self.tabuleiro[1][2]))
-        print( '-----------------------------')
-        print( '3| {}     | {}     | {}     |'.format(self.tabuleiro[2][0], self.tabuleiro[2][1], self.tabuleiro[2][2]))
-        print( '-----------------------------')
-    
-jogador1 = jogador()
-jogador1.nome = input("Nome do jogador: ")
-jogador1.token = input("Token que o jogador1 pretende usar: ")
+        return ' |  A   |   B  |   C  |\n-----------------------------\n1|   {}   |   {}   |   {}   |\n-----------------------------\n2|   {}   |   {}   |   {}   |\n-----------------------------\n3|   {}   |   {}   |   {}   |\n-----------------------------'.format(self.tabuleiro[0][0], self.tabuleiro[0][1], self.tabuleiro[0][2],self.tabuleiro[1][0], self.tabuleiro[1][1], self.tabuleiro[1][2],self.tabuleiro[2][0], self.tabuleiro[2][1], self.tabuleiro[2][2])
+    def validar_jogada(self,jogada,token):
+        if (jogada[0] == "A" or jogada[0] == "B" or jogada[0] == "C") and (jogada[1] == "1" or jogada[1] == "2" or jogada[1] == "3"):
+            if jogada[0] == "A":
+                coluna = 0
+                linha = int(jogada [1]) - 1
+                if token not in self.tabuleiro[linha][coluna]:
+                    self.tabuleiro[linha][coluna] += token
+                else:
+                    jogada = input("Escreva a posição que pretende jogar (A1-C3)")
+                    self.validar_jogada(jogada,token)
+            if jogada[0] == "B":
+                coluna = 1
+                linha = int(jogada [1]) - 1
+                if token not in self.tabuleiro[linha][coluna]:
+                    self.tabuleiro[linha][coluna] += token
+                else:
+                    jogada = input("Escreva a posição que pretende jogar (A1-C3)")
+                    self.validar_jogada(jogada,token)
+            if jogada[0] == "C":
+                coluna = 2
+                linha = int(jogada [1]) - 1
+                if token not in self.tabuleiro[linha][coluna]:
+                    self.tabuleiro[linha][coluna] += token
+                else:
+                    jogada = input("Escreva a posição que pretende jogar (A1-C3)")
+                    self.validar_jogada(jogada,token)
+        else:
+            jogada = input("Escreva a posição que pretende jogar (A1-C3)")
+            self.validar_jogada(jogada,token)
 
-jogador2 = jogador()
-jogador2.nome = input("Nome do jogador: ")
-jogador2.token = input("Token que o jogador2 pretende usar: ")
+jogador1nome = input("Nome do jogador: ")
+jogador1token = input("Token que o jogador1 pretende usar: ")
+jogador1 = jogador(jogador1nome, jogador1token)
+
+jogador2nome = input("Nome do jogador: ")
+jogador2token = input("Token que o jogador2 pretende usar: ")
+jogador2 = jogador(jogador2nome, jogador2token)
 
 while True:
-    if jogador1.token == jogador2.token: 
-        jogador2.token = input("Token que o jogador 2 que prente usar: ")
+    if jogador1token == jogador2token: 
+        jogador2token = input("Token que o jogador 2 que prente usar: ")
     else:
         break
 
-tabuleiro1 = tabuleiro()
-tabuleiro1.__str__()
+jogar = tabuleiro()
+jogar.__str__()
 print(jogador1.nome,jogador1.token,jogador2.nome,jogador2.token)
 
 jogar = tabuleiro()
-numero_max_jogadas = 9
+numero_max_jogadas = 0
 while numero_max_jogadas <= 9:
     jogada = input("Escreva a posição que pretende jogar (A1-C3)")
-    jogador1
-
-
-
+    jogar.validar_jogada(jogada,jogador1.token)
+    print(jogar)
+    jogada = input("Escreva a posição que pretende jogar (A1-C3)")
+    jogar.validar_jogada(jogada,jogador2.token)
+    print(jogar)
+    numero_max_jogadas += 1
 
 
