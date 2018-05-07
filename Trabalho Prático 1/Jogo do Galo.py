@@ -19,7 +19,7 @@ class tabuleiro():
             if jogada[0] == "A":
                 coluna = 0
                 linha = int(jogada [1]) - 1
-                if token not in self.tabuleiro[linha][coluna]:
+                if self.tabuleiro[linha][coluna] == "":
                     self.tabuleiro[linha][coluna] += token
                 else:
                     jogada = input("Escreva a posição que pretende jogar (A1-C3)")
@@ -27,7 +27,7 @@ class tabuleiro():
             if jogada[0] == "B":
                 coluna = 1
                 linha = int(jogada [1]) - 1
-                if token not in self.tabuleiro[linha][coluna]:
+                if self.tabuleiro[linha][coluna] == "":
                     self.tabuleiro[linha][coluna] += token
                 else:
                     jogada = input("Escreva a posição que pretende jogar (A1-C3)")
@@ -35,7 +35,7 @@ class tabuleiro():
             if jogada[0] == "C":
                 coluna = 2
                 linha = int(jogada [1]) - 1
-                if token not in self.tabuleiro[linha][coluna]:
+                if self.tabuleiro[linha][coluna] == "":
                     self.tabuleiro[linha][coluna] += token
                 else:
                     jogada = input("Escreva a posição que pretende jogar (A1-C3)")
