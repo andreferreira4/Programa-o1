@@ -2,7 +2,7 @@ import os
 import csv
 from pathlib import Path
 
-class jogador():
+class Jogador():
     
     def __init__(self, nome, token, pontuaçao, jogos): #A semelhança nesta classe com a dos meu colegas Diogo Neves e Carlos Antunes foi porque me ajudaram a difinir as classes        
         self.nome = nome
@@ -10,7 +10,7 @@ class jogador():
         self.pontuaçao = pontuaçao
         self.jogos = jogos
 
-class tabuleiro():
+class Tabuleiro():
 
     def __init__(self):
         self.tabuleiro = [[None, None , None ], 
@@ -75,34 +75,6 @@ def read_CSV(filepath, delim = ";") :
         data = csv.reader(file, delimiter=delim)
         for row in data:
             print("\t".join(row))
-def ordenar(my_list):
-    if len(my_list) > 1:
-        mid = int(len(my_list)/2)
-        left = my_list[:mid]
-        right = my_list[mid:]
-        # Split
-        ordenar(left)
-        ordenar(right)
-        # sort
-        i = j = k = 0
-        while i < len(left) and j < len(right):
-            if left[i] < right[j]:
-                my_list[k] = left[i]
-                i += 1
-            else:
-                my_list[k] = right[j]
-                j += 1
-            k += 1
-        # left leftovers
-        while i < len(left):
-            my_list[k] = left[i]
-            i += 1
-            k += 1
-        # right leftovers
-        while j < len(right):
-            my_list[k] = right[j]
-            j += 1
-            k += 1
 
 def menu():
     escolha = int(input('''
@@ -122,33 +94,14 @@ Escolha: '''))
         print('Escolha invalida, tente novamente')
         menu()
 
-def descobrir_token(token,lista):
-    for i in lista:
-        local = lista.index(i) # Primeiro elemento
-    for b in i:
-        if b == token:
-            local2 = lista[local].index(b) # Segundo elemento que está dentro do primeiro elemento
-            return (local,local2)
-
 filePath = "Trabalho Prático 1/ranking.csv"
-
-lista = []
-readlista_CSV(filePath,lista)
-
-for i in range(len(lista)):
-    print(lista[i], end=" ")
-
-while True:
-    escolha_token = input("Escolha o token que pertende jogar: ")
-    indice_token = descobrir_token(escolha_token,lista)
-    print(indice_token)
 
 #Inserir dados do jogador1
 jogador1nome = input("Nome do jogador: ")
 jogador1token = input("Token que o jogador1 pretende usar: ")
 jogador1pontuaçao = 0
 jogador1jogos = 0
-jogador1 = jogador(jogador1nome, jogador1token, jogador1pontuaçao, jogador1jogos)
+jogador1 = Jogador(jogador1nome, jogador1token, jogador1pontuaçao, jogador1jogos)
 
 #Inserir dados do jogador2
 jogador2nome = input("Nome do jogador: ")
@@ -160,21 +113,20 @@ while True:
     if jogador1token == jogador2token: 
         jogador2token = input("Token que o jogador2 que prente usar: ")
     else:
-        jogador2 = jogador(jogador2nome, jogador2token, jogador2pontuaçao, jogador2jogos)
+        jogador2 = Jogador(jogador2nome, jogador2token, jogador2pontuaçao, jogador2jogos)
         break
 
-lista_jogador = [[jogador1.nome, jogador1.token, jogador1.pontuaçao, jogador1.jogos],
-                 [jogador2.nome, jogador2.token, jogador2.pontuaçao, jogador2.jogos]]
+lista_jogador = []
+readlista_CSV(filePath,lista_jogador)
 
 escolha = menu()
 
 while True:
     if escolha == 1:
-        jogar = tabuleiro()
+        jogar = Tabuleiro()
         print(jogar)
         print("Jogador1 {}: {} jogador2 {}: {}".format(jogador1.nome,jogador1.token,jogador2.nome,jogador2.token))
 
-        jogar = tabuleiro()
         numero_max_jogadas = 0
         # Este ciclo serve para enquanto a 9 jogadas não forem jogadas ou não existir vencedor o programa continua a pedir jogadas aos utilizadores
         while numero_max_jogadas < 9:
@@ -230,11 +182,7 @@ while True:
         escolha = menu()
     elif escolha == 2:
         read_CSV(filePath)
+        escolha = menu()
     elif escolha == 3:
         print('Sair do jogo ')
         break
-
-
-
-    
-

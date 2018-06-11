@@ -31,6 +31,7 @@ dog2 = Animal("Rufus", owner1, Chip(GenerateChip()), 0)
 dog3 = Animal("Lady", owner2, Chip(GenerateChip()), 3)
 dog4 = Animal("Black", owner2, Chip(GenerateChip()), 1)
 
+
 print("-" * 30)
 print("Racers")
 print("-" * 30)
